@@ -21,12 +21,12 @@ namespace DaenerysVentaCompra.Models
         public string CodigoSuplidor { get; set; }
 
         [BsonElement("fechaOrden")]
-        public DateTime FechaOrden { get; set; }
+        public String FechaOrden { get; set; }
 
         [BsonElement("montoTotal")]
         public double MontoTotal { get; set; }
 
         [BsonElement("articulos")]
-        public List<Articulo> Articulos { get; set; }
+        public List<ArticuloOrden> Articulos { get; set; }
     }
 }
