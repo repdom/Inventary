@@ -44,5 +44,13 @@ namespace DaenerysVentaCompra.Controllers
 
             return CreatedAtRoute("GetArticulo", new { id = articulo.Id.ToString() }, articulo);
         }
+
+        [HttpPut]
+        public ActionResult<Articulo> Replace(Articulo articulo)
+        {
+            _articuloService.Update(articulo.Id, articulo);
+
+            return CreatedAtRoute("GetArticulo", new { id = articulo.Id.ToString(), articulo });
+        }
     }
 }
