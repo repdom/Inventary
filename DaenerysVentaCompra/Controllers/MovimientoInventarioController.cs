@@ -38,7 +38,7 @@ namespace DaenerysVentaCompra.Controllers
         }
 
         [HttpPost]
-        public ActionResult<MovimientoInventario> Create(MovimientoInventario movimiento)
+        public ActionResult<MovimientoInventario> Create([FromBody]MovimientoInventario movimiento)
         {
             _movimientoInventarioService.Create(movimiento);
 

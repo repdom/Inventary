@@ -18,10 +18,7 @@ namespace DaenerysVentaCompra.Models
         public string Descripcion { get; set; }
         [BsonElement("unidadCompra")]
         public string UnidadCompra { get; set; }
-        [BsonElement("almacen")]    
-        public List<BsonDocument> Almacen { get; set; }
-
-
-
+        [BsonElement("almacen")]
+        public List<ArrayItem> Almacen { get; set; }
     }
 }
