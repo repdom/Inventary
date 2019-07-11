@@ -36,6 +36,7 @@ namespace DaenerysVentaCompra
 
             services.AddSingleton<ArticuloService>();
             services.AddSingleton<MovimientoInventarioService>();
+            services.AddSingleton<ArticuloSuplidorService>();
 
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
