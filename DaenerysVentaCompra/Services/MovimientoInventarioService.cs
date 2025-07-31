@@ -11,11 +11,9 @@ namespace DaenerysVentaCompra.Services
     {
         private readonly IMongoCollection<MovimientoInventario> _movimientoInventario;
 
-        public MovimientoInventarioService(IInventoryDatabaseSettings settings)
+        public MovimientoInventarioService(IMongoClient client, IInventoryDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-
             _movimientoInventario = database.GetCollection<MovimientoInventario>("movimientoInventario");
         }
 
