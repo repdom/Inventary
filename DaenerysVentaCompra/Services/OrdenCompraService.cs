@@ -10,11 +10,9 @@ namespace DaenerysVentaCompra.Services
     public class OrdenCompraService
     {
         private readonly IMongoCollection<OrdenCompra> _ordenCompra;
-        public OrdenCompraService(IInventoryDatabaseSettings settings)
+        public OrdenCompraService(IMongoClient client, IInventoryDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-
             _ordenCompra = database.GetCollection<OrdenCompra>("inventory.ordenCompra");
         }
         public List<OrdenCompra> Get() =>

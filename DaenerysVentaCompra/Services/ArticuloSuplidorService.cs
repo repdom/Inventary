@@ -12,11 +12,9 @@ namespace DaenerysVentaCompra.Services
     public class ArticuloSuplidorService
     {
         private readonly IMongoCollection<ArticuloSuplidor> _articuloSup;
-        public ArticuloSuplidorService(IInventoryDatabaseSettings settings)
+        public ArticuloSuplidorService(IMongoClient client, IInventoryDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-
             _articuloSup = database.GetCollection<ArticuloSuplidor>("inventory.articuloSuplidor");
         }
 

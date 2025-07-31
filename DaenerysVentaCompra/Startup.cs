@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using DaenerysVentaCompra.Models;
 using DaenerysVentaCompra.Services;
+using MongoDB.Driver;
 
 namespace DaenerysVentaCompra
 {
@@ -34,10 +35,16 @@ namespace DaenerysVentaCompra
             services.AddSingleton<IInventoryDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<InventoryDatabaseSettings>>().Value);
 
-            services.AddSingleton<ArticuloService>();
-            services.AddSingleton<MovimientoInventarioService>();
-            services.AddSingleton<ArticuloSuplidorService>();
-            services.AddSingleton<OrdenCompraService>();
+            services.AddSingleton<IMongoClient>(sp =>
+            {
+                var settings = sp.GetRequiredService<IInventoryDatabaseSettings>();
+                return new MongoClient(settings.ConnectionString);
+            });
+
+            services.AddScoped<ArticuloService>();
+            services.AddScoped<MovimientoInventarioService>();
+            services.AddScoped<ArticuloSuplidorService>();
+            services.AddScoped<OrdenCompraService>();
 
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

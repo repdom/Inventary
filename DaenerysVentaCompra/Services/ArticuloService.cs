@@ -11,11 +11,9 @@ namespace DaenerysVentaCompra.Services
     {
         private readonly IMongoCollection<Articulo> _articulo;
 
-        public ArticuloService(IInventoryDatabaseSettings settings)
+        public ArticuloService(IMongoClient client, IInventoryDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-
             _articulo = database.GetCollection<Articulo>(settings.InventoryCollectionName);
         }
 
